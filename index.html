@@ -3,578 +3,560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đề Kiểm Tra Học Kỳ 1 - Toán 11 (2025-2026)</title>
+    <title>Đề Kiểm Tra Cuối Học Kỳ II - Toán 10</title>
+    <!-- Tích hợp MathJax để hiển thị công thức toán học -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        :root {
-            --primary-color: #0056b3;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-            --bg-color: #f4f7f6;
-        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            color: #333;
             line-height: 1.6;
-        }
-        .container {
+            color: #333;
             max-width: 900px;
             margin: 0 auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            background-color: #f4f7f6;
         }
         .header {
             text-align: center;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        .header h1 { color: var(--primary-color); margin: 0; font-size: 24px; text-transform: uppercase; }
-        .header p { margin: 5px 0; font-weight: bold; }
-        
-        /* Đồng hồ đếm ngược */
-        .timer-box {
-            position: sticky;
-            top: 10px;
-            background: #ff4757;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            z-index: 1000;
-            width: fit-content;
-            margin: 0 auto 20px auto;
-        }
-
-        .section-title {
-            background-color: #e9ecef;
-            padding: 12px 15px;
-            border-left: 5px solid var(--primary-color);
-            margin-top: 40px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
             margin-bottom: 20px;
+        }
+        .timer-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
             font-weight: bold;
-            font-size: 18px;
-            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
         }
-
-        .question {
-            margin-bottom: 30px;
-            padding: 20px;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            background-color: #fff;
-            transition: all 0.3s ease;
-        }
-        .question-content { font-weight: 600; margin-bottom: 15px; }
-        
-        /* Style cho đáp án trắc nghiệm */
-        .options label {
-            display: block;
-            margin-bottom: 10px;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
-        }
-        .options label:hover { background-color: #f8f9fa; }
-
-        /* Style cho bảng Đúng/Sai */
-        .tf-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .tf-table th, .tf-table td { border: 1px solid #ced4da; padding: 10px; }
-        .tf-table th { background-color: #e9ecef; text-align: center; }
-        .tf-radio { text-align: center; width: 80px; }
-
-        /* Style cho Input trả lời ngắn */
-        .short-ans-input {
-            width: 100%;
+        .section-title {
+            background-color: #2c3e50;
+            color: white;
             padding: 10px;
-            font-size: 16px;
-            border: 2px solid #ced4da;
             border-radius: 4px;
-            max-width: 300px;
+            margin-top: 30px;
         }
-
-        /* Nút nộp bài */
-        .btn-submit {
+        .question-block {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #3498db;
+        }
+        .options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .tf-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .tf-table th, .tf-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .tf-table td:first-child {
+            text-align: left;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 150px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .submit-btn {
             display: block;
             width: 100%;
             padding: 15px;
-            background-color: var(--primary-color);
+            font-size: 1.2em;
+            background-color: #27ae60;
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
             cursor: pointer;
-            margin-top: 40px;
+            margin-top: 30px;
             transition: background 0.3s;
         }
-        .btn-submit:hover { background-color: #004494; }
-        .btn-submit:disabled { background-color: #6c757d; cursor: not-allowed; }
-
-        /* Hiển thị kết quả */
-        .result-box {
-            display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #c3e6cb;
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
+        .submit-btn:hover {
+            background-color: #2ecc71;
         }
         .explanation {
             display: none;
-            margin-top: 15px;
+            background-color: #e8f6f3;
             padding: 15px;
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            border-radius: 4px;
-            color: #856404;
-            font-size: 15px;
+            border-left: 4px solid #1abc9c;
+            margin-top: 15px;
+            font-size: 0.95em;
         }
-        
-        /* Trạng thái đúng sai */
-        .correct-border { border: 2px solid var(--success-color) !important; }
-        .wrong-border { border: 2px solid var(--danger-color) !important; }
-        .partial-border { border: 2px solid #ffc107 !important; } /* Cho câu đúng sai được 1 phần */
+        .result-panel {
+            display: none;
+            background: #fff;
+            padding: 20px;
+            border: 2px solid #27ae60;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .result-panel h2 {
+            color: #27ae60;
+            margin-top: 0;
+        }
+        .correct-text { color: #27ae60; font-weight: bold; }
+        .wrong-text { color: #e74c3c; font-weight: bold; }
+        table.sign-table {
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        table.sign-table td {
+            border: 1px solid #333;
+            padding: 5px 15px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <div class="timer-box" id="timer">60:00</div>
+    <div class="timer-container" id="timer">Thời gian: 60:00</div>
 
-    <div class="container">
-        <div class="header">
-            <h1>ĐỀ KIỂM TRA HỌC KỲ 1 - NĂM HỌC 2025-2026</h1>
-            <p>MÔN: TOÁN 11</p>
-            <p>Thời gian làm bài: 60 phút (Không kể thời gian phát đề)</p>
-            <div style="margin-top: 15px;">
-                <input type="text" id="studentName" placeholder="Nhập Họ và Tên học sinh..." style="padding: 8px; width: 60%; border: 1px solid #ccc; border-radius: 4px;">
+    <div class="header">
+        <h2>ĐỀ KIỂM TRA HỌC KÌ 2 KHỐI 10 NĂM HỌC 2025-2026</h2>
+        <p><strong>Môn: Toán</strong> | Thời gian làm bài: 60 phút</p>
+    </div>
+
+    <div class="result-panel" id="resultPanel">
+        <h2>KẾT QUẢ BÀI LÀM</h2>
+        <h1 id="scoreDisplay">0 / 10 Điểm</h1>
+        <p>Phần 1: <span id="scoreP1"></span> | Phần 2: <span id="scoreP2"></span> | Phần 3: <span id="scoreP3"></span></p>
+        <p><i>Vui lòng kéo xuống để xem đáp án và hướng dẫn giải chi tiết.</i></p>
+    </div>
+
+    <form id="examForm">
+        <!-- PHẦN 1 -->
+        <h3 class="section-title">PHẦN 1: TRẮC NGHIỆM KHÁCH QUAN (4 điểm - 0.4đ/câu)</h3>
+        <p><i>Chọn chữ cái đứng trước câu trả lời đúng nhất.</i></p>
+
+        <div class="question-block" data-q="1">
+            <p><strong>Câu 1:</strong> Cho tam thức bậc hai \( y = f(x) \) có bảng xét dấu như hình sau:</p>
+            <table class="sign-table">
+                <tr><td>\( x \)</td><td>\( -\infty \)</td><td>-1</td><td>3</td><td>\( +\infty \)</td></tr>
+                <tr><td>\( f(x) \)</td><td>+</td><td>0</td><td>-</td><td>0</td><td>+</td></tr>
+            </table>
+            <p>Nhận xét nào sau đây đúng về dấu của tam thức bậc hai trên?</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq1" value="A"> A. \( f(x) > 0, \forall x \in (-1; +\infty) \)</li>
+                <li><input type="radio" name="mcq1" value="B"> B. \( f(x) > 0, \forall x \in (3; +\infty) \)</li>
+                <li><input type="radio" name="mcq1" value="C"> C. \( f(x) < 0, \forall x \in (-1; 4) \)</li>
+                <li><input type="radio" name="mcq1" value="D"> D. \( f(x) < 0, \forall x \in (-\infty; -1) \)</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án B.<br>
+                Dựa vào bảng xét dấu, ta thấy \( f(x) > 0 \) khi \( x \in (-\infty; -1) \cup (3; +\infty) \). Do đó \( f(x) > 0, \forall x \in (3; +\infty) \) là nhận xét đúng.
             </div>
         </div>
 
-        <div id="result-display" class="result-box"></div>
-
-        <form id="examForm">
-            <div class="section-title">PHẦN 1. TRẮC NGHIỆM KHÁCH QUAN (4,0 ĐIỂM)</div>
-            <p><i>Học sinh chọn 01 đáp án đúng nhất cho mỗi câu hỏi. Mỗi câu đúng được 0,4 điểm.</i></p>
-
-            <div class="question" id="q1">
-                <div class="question-content">Câu 1: Góc có số đo \(120^\circ\) đổi sang radian là:</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q1" value="A"> A. \(\frac{2\pi}{3}\)</label>
-                    <label><input type="radio" name="p1_q1" value="B"> B. \(\frac{3\pi}{2}\)</label>
-                    <label><input type="radio" name="p1_q1" value="C"> C. \(\frac{\pi}{4}\)</label>
-                    <label><input type="radio" name="p1_q1" value="D"> D. \(\frac{3\pi}{4}\)</label>
-                </div>
-                <div class="explanation" id="exp_p1_q1"><b>Giải thích:</b> \(120 \cdot \frac{\pi}{180} = \frac{2\pi}{3}\). Đáp án A.</div>
+        <div class="question-block" data-q="2">
+            <p><strong>Câu 2:</strong> Trong mặt phẳng Oxy, phương trình nào sau đây là phương trình của đường tròn?</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq2" value="A"> A. \( 2x^2 - 4y^2 - 8x + y - 1 = 0 \)</li>
+                <li><input type="radio" name="mcq2" value="B"> B. \( x^2 + y^2 - 4x + 6y - 12 = 0 \)</li>
+                <li><input type="radio" name="mcq2" value="C"> C. \( x^2 + y^2 - 2x - 8y + 20 = 0 \)</li>
+                <li><input type="radio" name="mcq2" value="D"> D. \( 4x^2 + 10y^2 - 6x - 2y = 0 \)</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án B.<br>
+                Điều kiện cần là hệ số của \( x^2 \) và \( y^2 \) bằng nhau, loại A và D.<br>
+                Xét C: \( x^2 + y^2 - 2x - 8y + 20 = 0 \Leftrightarrow (x-1)^2 + (y-4)^2 + 3 = 0 \) (vô lý).<br>
+                Xét B: \( x^2 + y^2 - 4x + 6y - 12 = 0 \Leftrightarrow (x-2)^2 + (y+3)^2 = 25 \) là đường tròn tâm \( I(2;-3) \), bán kính \( R=5 \).
             </div>
+        </div>
 
-            <div class="question" id="q2">
-                <div class="question-content">Câu 2: Nghiệm của phương trình \(\sin x = \frac{1}{2}\) là:</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q2" value="A"> A. \(x = \pm \frac{\pi}{6} + k2\pi\)</label>
-                    <label><input type="radio" name="p1_q2" value="B"> B. \(x = \frac{\pi}{6} + k2\pi; x = \frac{5\pi}{6} + k2\pi\)</label>
-                    <label><input type="radio" name="p1_q2" value="C"> C. \(x = \frac{\pi}{3} + k2\pi; x = \frac{2\pi}{3} + k2\pi\)</label>
-                    <label><input type="radio" name="p1_q2" value="D"> D. \(x = \pm \frac{\pi}{3} + k2\pi\)</label>
-                </div>
-                <div class="explanation" id="exp_p1_q2"><b>Giải thích:</b> \(\sin x = \sin(\frac{\pi}{6}) \Rightarrow x = \frac{\pi}{6} + k2\pi\) hoặc \(x = \pi - \frac{\pi}{6} + k2\pi\). Đáp án B.</div>
+        <div class="question-block" data-q="3">
+            <p><strong>Câu 3:</strong> Trong một trường THPT, khối 11 có 280 học sinh nam và 325 học sinh nữ. Nhà trường cần chọn một học sinh ở khối 11 đi dự đại hội của học sinh thành phố. Hỏi nhà trường có bao nhiêu cách chọn?</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq3" value="A"> A. 45</li>
+                <li><input type="radio" name="mcq3" value="B"> B. 280</li>
+                <li><input type="radio" name="mcq3" value="C"> C. 325</li>
+                <li><input type="radio" name="mcq3" value="D"> D. 605</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án D.<br>
+                Chọn một nam có 280 cách. Chọn một nữ có 325 cách. Theo quy tắc cộng, ta có \( 280 + 325 = 605 \) cách chọn.
             </div>
+        </div>
 
-            <div class="question" id="q3">
-                <div class="question-content">Câu 3: Cho dãy số \((u_n)\) xác định bởi \(u_n = 2n + 1\). Số hạng thứ 5 của dãy số là:</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q3" value="A"> A. 9</label>
-                    <label><input type="radio" name="p1_q3" value="B"> B. 10</label>
-                    <label><input type="radio" name="p1_q3" value="C"> C. 11</label>
-                    <label><input type="radio" name="p1_q3" value="D"> D. 12</label>
-                </div>
-                <div class="explanation" id="exp_p1_q3"><b>Giải thích:</b> \(u_5 = 2(5) + 1 = 11\). Đáp án C.</div>
+        <div class="question-block" data-q="4">
+            <p><strong>Câu 4:</strong> Một hộp đựng 9 thẻ được đánh số 1; 2; 3; 4; 5; 6; 7; 8; 9. Rút ngẫu nhiên 1 thẻ trong hộp. Gọi A là biến cố: “Thẻ được chọn mang số chẵn”. Mô tả biến cố đối \( \overline{A} \) của biến cố A.</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq4" value="A"> A. \( \overline{A} = \{1; 3; 5; 7\} \)</li>
+                <li><input type="radio" name="mcq4" value="B"> B. \( \overline{A} = \{2; 4; 6; 8\} \)</li>
+                <li><input type="radio" name="mcq4" value="C"> C. \( \overline{A} = \{1; 3; 5; 7; 9\} \)</li>
+                <li><input type="radio" name="mcq4" value="D"> D. \( \overline{A} = \{0; 2; 4; 6; 8\} \)</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án C.<br>
+                Biến cố đối \( \overline{A} \) là biến cố “Thẻ được chọn không mang số chẵn” hay “Thẻ được chọn mang số lẻ”. Vậy \( \overline{A} = \{1; 3; 5; 7; 9\} \).
             </div>
+        </div>
 
-            <div class="question" id="q4">
-                <div class="question-content">Câu 4: Cấp số cộng \((u_n)\) có \(u_1 = 2, d = 3\). Công thức số hạng tổng quát là:</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q4" value="A"> A. \(u_n = 3n - 1\)</label>
-                    <label><input type="radio" name="p1_q4" value="B"> B. \(u_n = 3n + 2\)</label>
-                    <label><input type="radio" name="p1_q4" value="C"> C. \(u_n = 2n + 3\)</label>
-                    <label><input type="radio" name="p1_q4" value="D"> D. \(u_n = 3n + 1\)</label>
-                </div>
-                <div class="explanation" id="exp_p1_q4"><b>Giải thích:</b> \(u_n = u_1 + (n-1)d = 2 + (n-1)3 = 3n - 1\). Đáp án A.</div>
+        <div class="question-block" data-q="5">
+            <p><strong>Câu 5:</strong> Trong mặt phẳng tọa độ Oxy, cho \( A(1; -3), B(2; 2) \). Tọa độ của vectơ \( \vec{AB} \) là:</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq5" value="A"> A. \( (1; 5) \)</li>
+                <li><input type="radio" name="mcq5" value="B"> B. \( (-1; -5) \)</li>
+                <li><input type="radio" name="mcq5" value="C"> C. \( (-1; 1) \)</li>
+                <li><input type="radio" name="mcq5" value="D"> D. \( (3; -1) \)</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án A.<br>
+                Ta có \( \vec{AB} = (x_B - x_A; y_B - y_A) = (2 - 1; 2 - (-3)) = (1; 5) \).
             </div>
+        </div>
 
-            <div class="question" id="q5">
-                <div class="question-content">Câu 5: Tổng của cấp số nhân lùi vô hạn \(\frac{1}{2}; \frac{1}{4}; \frac{1}{8}; \dots\) là:</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q5" value="A"> A. 2</label>
-                    <label><input type="radio" name="p1_q5" value="B"> B. 1</label>
-                    <label><input type="radio" name="p1_q5" value="C"> C. \(\frac{3}{2}\)</label>
-                    <label><input type="radio" name="p1_q5" value="D"> D. \(\frac{1}{2}\)</label>
-                </div>
-                <div class="explanation" id="exp_p1_q5"><b>Giải thích:</b> \(S = \frac{u_1}{1-q} = \frac{1/2}{1 - 1/2} = 1\). Đáp án B.</div>
+        <div class="question-block" data-q="6">
+            <p><strong>Câu 6:</strong> Phương trình nào sau đây là phương trình chính tắc của một Elip?</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq6" value="A"> A. \( x^2 + y^2 = 4 \)</li>
+                <li><input type="radio" name="mcq6" value="B"> B. \( \frac{x^2}{9} - \frac{y^2}{4} = 1 \)</li>
+                <li><input type="radio" name="mcq6" value="C"> C. \( y^2 = 6x \)</li>
+                <li><input type="radio" name="mcq6" value="D"> D. \( \frac{x^2}{25} + \frac{y^2}{4} = 1 \)</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án D.<br>
+                Phương trình chính tắc của Elip có dạng \( \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 \) với \( a > b > 0 \). Do đó \( \frac{x^2}{25} + \frac{y^2}{4} = 1 \) là đáp án đúng.
             </div>
+        </div>
 
-            <div class="question" id="q6">
-                <div class="question-content">Câu 6: \(\lim \frac{2n^2 + 1}{n^2 - 3}\) bằng:</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q6" value="A"> A. 2</label>
-                    <label><input type="radio" name="p1_q6" value="B"> B. 1</label>
-                    <label><input type="radio" name="p1_q6" value="C"> C. 0</label>
-                    <label><input type="radio" name="p1_q6" value="D"> D. \(+\infty\)</label>
-                </div>
-                <div class="explanation" id="exp_p1_q6"><b>Giải thích:</b> Chia cả tử và mẫu cho \(n^2\), giới hạn bằng hệ số cao nhất: \(2/1 = 2\). Đáp án A.</div>
+        <div class="question-block" data-q="7">
+            <p><strong>Câu 7:</strong> Gieo một con súc sắc, xác suất xuất hiện mặt có số chấm chia hết cho 3 là:</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq7" value="A"> A. \( \frac{2}{3} \)</li>
+                <li><input type="radio" name="mcq7" value="B"> B. \( \frac{1}{2} \)</li>
+                <li><input type="radio" name="mcq7" value="C"> C. \( \frac{1}{3} \)</li>
+                <li><input type="radio" name="mcq7" value="D"> D. \( \frac{1}{6} \)</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án C.<br>
+                Không gian mẫu \( \Omega = \{1;2;3;4;5;6\} \Rightarrow n(\Omega) = 6 \).<br>
+                Gọi A là biến cố: “xuất hiện số chấm chia hết cho 3”. \( A = \{3; 6\} \Rightarrow n(A) = 2 \).<br>
+                Xác suất \( P(A) = \frac{n(A)}{n(\Omega)} = \frac{2}{6} = \frac{1}{3} \).
             </div>
+        </div>
 
-            <div class="question" id="q7">
-                <div class="question-content">Câu 7: \(\lim_{x \to 1} (3x - 2)\) bằng:</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q7" value="A"> A. 3</label>
-                    <label><input type="radio" name="p1_q7" value="B"> B. -2</label>
-                    <label><input type="radio" name="p1_q7" value="C"> C. 1</label>
-                    <label><input type="radio" name="p1_q7" value="D"> D. 5</label>
-                </div>
-                <div class="explanation" id="exp_p1_q7"><b>Giải thích:</b> Thay \(x=1\) vào hàm số liên tục: \(3(1) - 2 = 1\). Đáp án C.</div>
+        <div class="question-block" data-q="8">
+            <p><strong>Câu 8:</strong> Biểu thức nào sau đây là một tam thức bậc hai?</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq8" value="A"> A. \( f(x) = x^3 + 1 \)</li>
+                <li><input type="radio" name="mcq8" value="B"> B. \( f(x) = \frac{2x^2+4}{x-2} \)</li>
+                <li><input type="radio" name="mcq8" value="C"> C. \( f(x) = \frac{x^2-1}{x+2} \)</li>
+                <li><input type="radio" name="mcq8" value="D"> D. \( f(x) = -x^2 + 2x - 5 \)</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án D.<br>
+                Tam thức bậc hai là biểu thức có dạng \( f(x) = ax^2 + bx + c \) (với \( a \neq 0 \)).
             </div>
+        </div>
 
-            <div class="question" id="q8">
-                <div class="question-content">Câu 8: Trong không gian, cho đường thẳng \(a\) song song với mặt phẳng \((P)\). Có bao nhiêu mặt phẳng chứa \(a\) và song song với \((P)\)?</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q8" value="A"> A. 0</label>
-                    <label><input type="radio" name="p1_q8" value="B"> B. 1</label>
-                    <label><input type="radio" name="p1_q8" value="C"> C. 2</label>
-                    <label><input type="radio" name="p1_q8" value="D"> D. Vô số</label>
-                </div>
-                <div class="explanation" id="exp_p1_q8"><b>Giải thích:</b> Không có mặt phẳng nào chứa \(a\) mà song song với \((P)\) vì nếu mp chứa \(a\) thì nó cắt hoặc trùng hoặc song song. Nhưng theo định nghĩa, nếu \(a // (P)\), thì mọi mp chứa \(a\) cắt \((P)\) theo giao tuyến song song với \(a\). Tuy nhiên, câu hỏi có thể gây nhầm lẫn với lý thuyết. Chính xác: Nếu \(a // (P)\) thì không có mp nào chứa \(a\) mà song song \((P)\) (vì \(a\) nằm trong mp đó thì mp đó sẽ có điểm chung với \((P)\) ở vô cực? Không). <br> *Đính chính*: Câu hỏi này thường là "Có bao nhiêu mp chứa a và song song với đường thẳng b chéo a?". Nếu theo đề bài trên, đáp án là **A (Không có)** vì bản thân \(a\) đã cách \((P)\) một khoảng, mp chứa \(a\) không thể song song \((P)\) được trừ khi \(a\) nằm trong mp song song đó. Chờ đã, có duy nhất 1 mặt phẳng chứa \(a\) và song song với \((P)\) là SAI. Vì \(a\) đã song song \((P)\). Bất kỳ mp nào chứa \(a\) cũng sẽ cắt \((P)\) hoặc song song (P). Nhưng \(a // (P)\) nên \(a\) không có điểm chung. Nếu dựng mp (Q) chứa a, để (Q)//(P) là vô lý vì a nằm trong (Q). <br> **Đáp án chuẩn kiến thức GK 11:** Qua một điểm nằm ngoài mp, có duy nhất 1 mp song song. Nhưng ở đây là chứa đường thẳng. Đáp án là **A**.</div>
+        <div class="question-block" data-q="9">
+            <p><strong>Câu 9:</strong> Tập nghiệm của bất phương trình \( x^2 - 2x - 3 \le 0 \) là:</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq9" value="A"> A. \( S = [-3; 1] \)</li>
+                <li><input type="radio" name="mcq9" value="B"> B. \( S = (-\infty; -1] \cup [3; +\infty) \)</li>
+                <li><input type="radio" name="mcq9" value="C"> C. \( S = [-1; 3] \)</li>
+                <li><input type="radio" name="mcq9" value="D"> D. \( S = (-\infty; -3] \cup [1; +\infty) \)</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án C.<br>
+                Tam thức có 2 nghiệm là \( -1 \) và \( 3 \). Do hệ số \( a = 1 > 0 \) nên bất phương trình \( \le 0 \) khi \( x \) nằm trong khoảng hai nghiệm. Vậy \( S = [-1; 3] \).
             </div>
+        </div>
 
-            <div class="question" id="q9">
-                <div class="question-content">Câu 9: Cho hình chóp S.ABCD có đáy là hình bình hành. Giao tuyến của hai mặt phẳng (SAB) và (SCD) là đường thẳng đi qua S và:</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q9" value="A"> A. Song song với AD</label>
-                    <label><input type="radio" name="p1_q9" value="B"> B. Song song với AB</label>
-                    <label><input type="radio" name="p1_q9" value="C"> C. Trùng với đường trung bình của đáy</label>
-                    <label><input type="radio" name="p1_q9" value="D"> D. Cắt AB</label>
-                </div>
-                <div class="explanation" id="exp_p1_q9"><b>Giải thích:</b> Vì AB // CD, giao tuyến của (SAB) và (SCD) là đường thẳng qua S và song song với AB (và CD). Đáp án B.</div>
+        <div class="question-block" data-q="10">
+            <p><strong>Câu 10:</strong> Lớp 10C có 30 học sinh nam và 22 học sinh nữ. Số cách chọn ra 1 bạn học sinh để làm lớp trưởng là:</p>
+            <ul class="options">
+                <li><input type="radio" name="mcq10" value="A"> A. 22</li>
+                <li><input type="radio" name="mcq10" value="B"> B. 30</li>
+                <li><input type="radio" name="mcq10" value="C"> C. 660</li>
+                <li><input type="radio" name="mcq10" value="D"> D. 52</li>
+            </ul>
+            <div class="explanation">
+                <strong>Hướng dẫn giải:</strong> Đáp án D.<br>
+                Theo quy tắc cộng, tổng số cách chọn 1 học sinh từ lớp (gồm nam hoặc nữ) là: \( 30 + 22 = 52 \) cách.
             </div>
+        </div>
 
-            <div class="question" id="q10">
-                <div class="question-content">Câu 10: Cho hình lăng trụ ABC.A'B'C'. Mặt phẳng (ABC) song song với mặt phẳng nào sau đây?</div>
-                <div class="options">
-                    <label><input type="radio" name="p1_q10" value="A"> A. (ACC'A')</label>
-                    <label><input type="radio" name="p1_q10" value="B"> B. (BCC'B')</label>
-                    <label><input type="radio" name="p1_q10" value="C"> C. (A'B'C')</label>
-                    <label><input type="radio" name="p1_q10" value="D"> D. (ABB'A')</label>
-                </div>
-                <div class="explanation" id="exp_p1_q10"><b>Giải thích:</b> Theo tính chất lăng trụ, hai đáy song song với nhau. Đáp án C.</div>
+        <!-- PHẦN 2 -->
+        <h3 class="section-title">PHẦN 2: TRẮC NGHIỆM ĐÚNG/SAI (3 điểm - 1.0đ/câu)</h3>
+        <p><i>Trong mỗi câu, chọn Đúng hoặc Sai cho từng mệnh đề a, b, c, d. (Đúng 1 ý: 0.1đ | 2 ý: 0.25đ | 3 ý: 0.5đ | 4 ý: 1.0đ)</i></p>
+
+        <div class="question-block">
+            <p><strong>Câu 1:</strong> Xét khai triển nhị thức Niu-tơn của biểu thức \( (1 - 4x)^5 \). Khi đó:</p>
+            <table class="tf-table">
+                <tr>
+                    <th>Mệnh đề</th>
+                    <th>Đúng</th>
+                    <th>Sai</th>
+                </tr>
+                <tr>
+                    <td>(a) Số hạng tổng quát trong khai triển trên là \( C_5^k (-4)^k x^k \)</td>
+                    <td><input type="radio" name="tf1a" value="T"></td>
+                    <td><input type="radio" name="tf1a" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(b) Hệ số của số hạng chứa \( x^2 \) trong khai triển là 160</td>
+                    <td><input type="radio" name="tf1b" value="T"></td>
+                    <td><input type="radio" name="tf1b" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(c) Số hạng thứ tư trong khai triển với số mũ tăng dần của x là \( 1280x^4 \)</td>
+                    <td><input type="radio" name="tf1c" value="T"></td>
+                    <td><input type="radio" name="tf1c" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(d) Tổng tất cả các hệ số của các số hạng trong khai triển là \( -243 \)</td>
+                    <td><input type="radio" name="tf1d" value="T"></td>
+                    <td><input type="radio" name="tf1d" value="F"></td>
+                </tr>
+            </table>
+            <div class="explanation" data-tf="1">
+                <strong>Hướng dẫn giải:</strong><br>
+                - (a) <strong>Sai</strong>. Số hạng tổng quát (thứ k+1) là \( T_{k+1} = C_5^k 1^{5-k} (-4x)^k = C_5^k (-4)^k x^k \), biểu thức thiếu k+1.<br>
+                - (b) <strong>Đúng</strong>. Úng với k = 2, hệ số là \( C_5^2 (-4)^2 = 10 \times 16 = 160 \).<br>
+                - (c) <strong>Sai</strong>. Số hạng thứ tư ứng với \( k=3 \), \( T_4 = C_5^3 (-4x)^3 = -640x^3 \).<br>
+                - (d) <strong>Đúng</strong>. Thay \( x=1 \) vào biểu thức: \( (1 - 4)^5 = (-3)^5 = -243 \).
             </div>
+        </div>
 
-
-            <div class="section-title">PHẦN 2. TRẮC NGHIỆM ĐÚNG SAI (3,0 ĐIỂM)</div>
-            <p><i>Mỗi câu hỏi có 4 ý. Học sinh chọn Đúng hoặc Sai cho từng ý. <br>
-            Quy tắc điểm: Đúng 1 ý: 0,1đ | Đúng 2 ý: 0,2đ | Đúng 3 ý: 0,5đ | Đúng 4 ý: 1,0đ.</i></p>
-
-            <div class="question" id="p2_q1">
-                <div class="question-content">
-                    Câu 1: Tại một bến cảng, mực nước biển \(h\) (mét) so với mức trung bình vào thời điểm \(t\) (giờ) tính từ nửa đêm (0 giờ) được mô hình hóa bởi hàm số: 
-                    \( h(t) = 2\cos\left(\frac{\pi t}{6}\right) + 4 \) với \(0 \leq t \leq 24\).
-                </div>
-                <table class="tf-table">
-                    <tr>
-                        <th>Mệnh đề</th>
-                        <th>Đúng</th>
-                        <th>Sai</th>
-                    </tr>
-                    <tr>
-                        <td>a) Mực nước biển cao nhất tại cảng là 6 mét.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q1_a" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q1_a" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>b) Chu kỳ thay đổi mực nước biển là 6 giờ.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q1_b" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q1_b" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>c) Vào lúc 6 giờ sáng (\(t=6\)), mực nước biển thấp nhất trong ngày.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q1_c" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q1_c" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>d) Trong khoảng thời gian từ 0 giờ đến 12 giờ trưa, có 2 thời điểm mực nước đạt 5 mét.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q1_d" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q1_d" value="false"></td>
-                    </tr>
-                </table>
-                <div class="explanation" id="exp_p2_q1">
-                    <b>Giải thích:</b><br>
-                    a) <b>Đúng</b>. Max = \(2(1) + 4 = 6\).<br>
-                    b) <b>Sai</b>. \(T = 2\pi / (\pi/6) = 12\) giờ.<br>
-                    c) <b>Đúng</b>. Tại \(t=6\), \(\cos(\pi) = -1 \Rightarrow h = 2(-1)+4 = 2\) (Min).<br>
-                    d) <b>Đúng</b>. Xét \(2\cos(\pi t/6) + 4 = 5 \Rightarrow \cos(\pi t/6) = 0.5\). Trong [0, 12], phương trình có 2 nghiệm (\(t=2\) và \(t=10\)).
-                </div>
+        <div class="question-block">
+            <p><strong>Câu 2:</strong> Trong hệ tọa độ Oxy, cho điểm \( A(1; 2), B(-3; 4) \), đường thẳng \( \Delta: x + y - 2 = 0 \). Khi đó:</p>
+            <table class="tf-table">
+                <tr>
+                    <th>Mệnh đề</th>
+                    <th>Đúng</th>
+                    <th>Sai</th>
+                </tr>
+                <tr>
+                    <td>(a) Trung điểm của đoạn thẳng AB có tọa độ là \( (-1; 3) \)</td>
+                    <td><input type="radio" name="tf2a" value="T"></td>
+                    <td><input type="radio" name="tf2a" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(b) Điểm M thỏa mãn \( \vec{MA} + 2\vec{MB} = \vec{0} \) có tọa độ là \( M(-5; 10) \)</td>
+                    <td><input type="radio" name="tf2b" value="T"></td>
+                    <td><input type="radio" name="tf2b" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(c) Đường thẳng đi qua A và vuông góc với \( \Delta \) là \( x - y + 1 = 0 \)</td>
+                    <td><input type="radio" name="tf2c" value="T"></td>
+                    <td><input type="radio" name="tf2c" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(d) Đường thẳng d đi qua B và tạo với \( \Delta \) một góc \( 45^\circ \) là \( x + 3 = 0 \) hoặc \( y - 4 = 0 \)</td>
+                    <td><input type="radio" name="tf2d" value="T"></td>
+                    <td><input type="radio" name="tf2d" value="F"></td>
+                </tr>
+            </table>
+            <div class="explanation" data-tf="2">
+                <strong>Hướng dẫn giải:</strong><br>
+                - (a) <strong>Đúng</strong>. Tọa độ trung điểm: \( x_I = \frac{1 + (-3)}{2} = -1 \); \( y_I = \frac{2+4}{2} = 3 \).<br>
+                - (b) <strong>Sai</strong>. Đặt \( M(x; y) \). Giải phương trình vectơ: \( (1-x) + 2(-3-x) = 0 \Rightarrow x = -5/3 \); \( (2-y) + 2(4-y) = 0 \Rightarrow y = 10/3 \). Tọa độ đúng là M(-5/3; 10/3).<br>
+                - (c) <strong>Đúng</strong>. Đường vuông góc \( \Delta \) nhận \( \vec{u}_\Delta = (1; -1) \) làm vectơ pháp tuyến. PT: \( 1(x-1) - 1(y-2) = 0 \Leftrightarrow x - y + 1 = 0 \).<br>
+                - (d) <strong>Đúng</strong>. Giải phương trình cos góc tạo bởi 2 VTPT bằng \( \cos 45^\circ \), suy ra hai đường thẳng \( x+3=0 \) và \( y-4=0 \).
             </div>
+        </div>
 
-            <div class="question" id="p2_q2">
-                <div class="question-content">
-                    Câu 2: Một nhà thi đấu được thiết kế có các hàng ghế xếp theo hình quạt. Hàng đầu tiên (gần sân khấu nhất) có 15 ghế. Mỗi hàng sau có nhiều hơn hàng liền trước 4 ghế.
-                </div>
-                <table class="tf-table">
-                    <tr>
-                        <th>Mệnh đề</th>
-                        <th>Đúng</th>
-                        <th>Sai</th>
-                    </tr>
-                    <tr>
-                        <td>a) Số ghế ở các hàng lập thành một cấp số cộng với công sai \(d=4\).</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q2_a" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q2_a" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>b) Số ghế ở hàng thứ 10 là 55 ghế.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q2_b" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q2_b" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>c) Nếu nhà thi đấu có 20 hàng ghế thì tổng số ghế là 1060 ghế.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q2_c" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q2_c" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>d) Để có ít nhất 500 ghế, nhà thi đấu cần thiết kế tối thiểu 13 hàng ghế.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q2_d" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q2_d" value="false"></td>
-                    </tr>
-                </table>
-                <div class="explanation" id="exp_p2_q2">
-                    <b>Giải thích:</b><br>
-                    a) <b>Đúng</b>. \(u_1 = 15, d = 4\).<br>
-                    b) <b>Sai</b>. \(u_{10} = 15 + 9(4) = 15 + 36 = 51\).<br>
-                    c) <b>Đúng</b>. \(S_{20} = \frac{20}{2}[2(15) + 19(4)] = 10[30 + 76] = 1060\).<br>
-                    d) <b>Đúng</b>. Giải \(S_n \geq 500 \Rightarrow \frac{n}{2}[30 + (n-1)4] \geq 500 \Rightarrow 2n^2 + 13n - 500 \geq 0\). Nghiệm \(n \approx 12.8\). Vậy cần 13 hàng.
-                </div>
+        <div class="question-block">
+            <p><strong>Câu 3:</strong> Một tổ có 5 học sinh nam và 5 học sinh nữ.</p>
+            <table class="tf-table">
+                <tr>
+                    <th>Mệnh đề</th>
+                    <th>Đúng</th>
+                    <th>Sai</th>
+                </tr>
+                <tr>
+                    <td>(a) Có 10! cách xếp 10 học sinh trên thành một hàng ngang.</td>
+                    <td><input type="radio" name="tf3a" value="T"></td>
+                    <td><input type="radio" name="tf3a" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(b) Có \( C_5^2 \) cách chọn 5 học sinh từ 10 học sinh trên trong đó có đúng 2 học sinh nam.</td>
+                    <td><input type="radio" name="tf3b" value="T"></td>
+                    <td><input type="radio" name="tf3b" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(c) Có \( 5! \times 5! \) cách xếp 10 học sinh thành hàng ngang sao cho 5 nam đứng cạnh nhau và 5 nữ đứng cạnh nhau.</td>
+                    <td><input type="radio" name="tf3c" value="T"></td>
+                    <td><input type="radio" name="tf3c" value="F"></td>
+                </tr>
+                <tr>
+                    <td>(d) Có \( 5! \times 6! \) cách xếp 10 học sinh trên sao cho 5 học sinh nữ luôn đứng cạnh nhau.</td>
+                    <td><input type="radio" name="tf3d" value="T"></td>
+                    <td><input type="radio" name="tf3d" value="F"></td>
+                </tr>
+            </table>
+            <div class="explanation" data-tf="3">
+                <strong>Hướng dẫn giải:</strong><br>
+                - (a) <strong>Đúng</strong>. Hoán vị 10 phần tử là 10!.<br>
+                - (b) <strong>Sai</strong>. Số cách chọn phải là \( C_5^2 \times C_5^3 \) (chọn 2 nam và 3 nữ).<br>
+                - (c) <strong>Sai</strong>. Phải đổi chỗ vị trí 2 nhóm (Nam-Nữ hoặc Nữ-Nam). Số cách là \( 2! \times 5! \times 5! \).<br>
+                - (d) <strong>Đúng</strong>. Coi 5 nữ là 1 cụm. Hoán vị nội bộ 5 nữ là 5!. Hoán vị cụm này với 5 học sinh nam (tổng 6 vị trí) là 6!. Vậy có \( 5! \times 6! \) cách.
             </div>
+        </div>
 
-            <div class="question" id="p2_q3">
-                <div class="question-content">
-                    Câu 3: Cho hình chóp S.ABCD có đáy ABCD là hình thang với đáy lớn AD song song với BC và \(AD = 2BC\). Gọi O là giao điểm của AC và BD. Gọi G là trọng tâm tam giác SCD.
-                </div>
-                <table class="tf-table">
-                    <tr>
-                        <th>Mệnh đề</th>
-                        <th>Đúng</th>
-                        <th>Sai</th>
-                    </tr>
-                    <tr>
-                        <td>a) Giao tuyến của hai mặt phẳng (SAC) và (SBD) là đường thẳng SO.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q3_a" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q3_a" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>b) Đường thẳng OG song song với mặt phẳng (SBC).</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q3_b" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q3_b" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>c) Giao điểm của đường thẳng OG và mặt phẳng (SAB) là điểm S.</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q3_c" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q3_c" value="false"></td>
-                    </tr>
-                    <tr>
-                        <td>d) Tỉ số diện tích của tam giác OBC và tam giác ODA là \(\frac{1}{4}\).</td>
-                        <td class="tf-radio"><input type="radio" name="p2_q3_d" value="true"></td>
-                        <td class="tf-radio"><input type="radio" name="p2_q3_d" value="false"></td>
-                    </tr>
-                </table>
-                <div class="explanation" id="exp_p2_q3">
-                    <b>Giải thích:</b><br>
-                    a) <b>Đúng</b>.<br>
-                    b) <b>Đúng</b>. (Dùng Thales: \(OD/OB = AD/BC = 2\). Trong tam giác SDB, gọi M trung điểm SC... Phức tạp hơn: Xét tỉ số trọng tâm và tỉ số O. Ta chứng minh OG // SB hoặc SC. Thực tế: \(DG/DM = 2/3\) (M trung điểm SC). \(OD/DB = 2/3\). Vậy \(OG // BM \subset (SBC)\)).<br>
-                    c) <b>Sai</b>. OG // (SBC) và (SBC) cắt (SAB) theo SB. OG không cắt S.<br>
-                    d) <b>Đúng</b>. \(\triangle OBC \sim \triangle ODA\) tỉ số \(k=1/2\). Tỉ số diện tích \(k^2 = 1/4\).
-                </div>
+        <!-- PHẦN 3 -->
+        <h3 class="section-title">PHẦN 3: TRẮC NGHIỆM TRẢ LỜI NGẮN (3 điểm - 0.75đ/câu)</h3>
+        <p><i>Học sinh nhập đáp án dạng số vào ô trống.</i></p>
+
+        <div class="question-block">
+            <p><strong>Câu 1:</strong> Ở một phường, từ A đến B có 10 con đường khác nhau, trong đó có 2 đường một chiều từ A đến B và 8 đường hai chiều từ A đến B. Một người muốn đi từ A đến B rồi trở về A mà không đi lại đường cũ. Hỏi người đó có bao nhiêu cách đi và về?</p>
+            Nhập đáp án: <input type="text" id="sa1" placeholder="Nhập số...">
+            <div class="explanation" data-sa="1">
+                <strong>Hướng dẫn giải:</strong> Đáp án: <strong>72</strong>.<br>
+                - TH1: Đi từ A đến B theo đường hai chiều (8 cách). Lúc về không đi đường cũ và không đi đường một chiều: còn 7 cách. Số cách = \( 8 \times 7 = 56 \).<br>
+                - TH2: Đi từ A đến B theo đường một chiều (2 cách). Lúc về có thể đi 8 đường hai chiều: còn 8 cách. Số cách = \( 2 \times 8 = 16 \).<br>
+                Tổng số cách: 56 + 16 = 72 cách.
             </div>
+        </div>
 
-
-            <div class="section-title">PHẦN 3. TRẢ LỜI NGẮN (3,0 ĐIỂM)</div>
-            <p><i>Học sinh điền kết quả vào ô trống (chỉ điền số hoặc phân số tối giản dạng a/b). Mỗi câu đúng được 0,75 điểm.</i></p>
-
-            <div class="question" id="p3_q1">
-                <div class="question-content">
-                    Câu 1: Cho hàm số \(f(x) = \begin{cases} \frac{x^2 - 1}{x - 1} & \text{khi } x \neq 1 \\ a & \text{khi } x = 1 \end{cases}\). Tìm giá trị của \(a\) để hàm số liên tục tại \(x = 1\).
-                </div>
-                <input type="text" id="ans_p3_q1" class="short-ans-input" placeholder="Nhập kết quả...">
-                <div class="explanation" id="exp_p3_q1">
-                    <b>Đáp án:</b> 2 <br>
-                    <b>Giải thích:</b> \(\lim_{x \to 1} \frac{(x-1)(x+1)}{x-1} = \lim (x+1) = 2\). Để liên tục thì \(a = 2\).
-                </div>
+        <div class="question-block">
+            <p><strong>Câu 2:</strong> Từ các chữ số 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, có thể lập được bao nhiêu số tự nhiên có 9 chữ số đôi một khác nhau và chia hết cho 5?</p>
+            Nhập đáp án: <input type="text" id="sa2" placeholder="Nhập số...">
+            <div class="explanation" data-sa="2">
+                <strong>Hướng dẫn giải:</strong> Đáp án: <strong>685440</strong>.<br>
+                Gọi số là \( \overline{a_1a_2...a_9} \). Số chia hết cho 5 thì \( a_9 = 0 \) hoặc \( a_9 = 5 \).<br>
+                - TH1: \( a_9 = 0 \). Số cách xếp 8 vị trí còn lại từ 9 số là \( 9 \times 8 \times ... \times 2 = 9! = 362880 \).<br>
+                - TH2: \( a_9 = 5 \). \( a_1 \) khác 0 có 8 cách. Các vị trí còn lại có \( 8 \times 7 \times ... \times 2 = 8! \) cách. Số cách = \( 8 \times 8! = 322560 \).<br>
+                Tổng cộng: \( 362880 + 322560 = 685440 \).
             </div>
+        </div>
 
-            <div class="question" id="p3_q2">
-                <div class="question-content">
-                    Câu 2: Một quả bóng được thả rơi từ độ cao 10m. Sau mỗi lần chạm đất, bóng nảy lên độ cao bằng \(\frac{3}{4}\) độ cao lần rơi trước đó. Tính tổng quãng đường bóng đã di chuyển từ lúc thả đến khi dừng hẳn (Làm tròn đến hàng đơn vị).
-                </div>
-                <input type="text" id="ans_p3_q2" class="short-ans-input" placeholder="Nhập kết quả...">
-                <div class="explanation" id="exp_p3_q2">
-                    <b>Đáp án:</b> 70 <br>
-                    <b>Giải thích:</b> Quãng đường = \(10 + 2(10 \cdot \frac{3}{4} + 10 \cdot (\frac{3}{4})^2 + \dots)\) = \(10 + 2 \cdot \frac{7.5}{1 - 3/4} = 10 + 2(30) = 70\)m.
-                </div>
+        <div class="question-block">
+            <p><strong>Câu 3:</strong> Cho Elíp (E) có phương trình \( \frac{x^2}{25} + \frac{y^2}{16} = 1 \). Tính tổng khoảng cách từ một điểm M tùy ý thuộc (E) đến hai tiêu điểm của (E).</p>
+            Nhập đáp án: <input type="text" id="sa3" placeholder="Nhập số...">
+            <div class="explanation" data-sa="3">
+                <strong>Hướng dẫn giải:</strong> Đáp án: <strong>10</strong>.<br>
+                Từ phương trình chính tắc của (E), ta có \( a^2 = 25 \Rightarrow a = 5 \).<br>
+                Theo định nghĩa của Elip, tổng khoảng cách từ điểm \( M \in (E) \) đến hai tiêu điểm là \( MF_1 + MF_2 = 2a = 2 \times 5 = 10 \).
             </div>
+        </div>
 
-            <div class="question" id="p3_q3">
-                <div class="question-content">
-                    Câu 3: Bác Bình gửi vào ngân hàng 100 triệu đồng với lãi suất 7%/năm, kỳ hạn 1 năm theo thể thức lãi kép. Hỏi sau ít nhất bao nhiêu năm thì số tiền cả gốc và lãi của bác Bình vượt quá 150 triệu đồng? (Nhập số nguyên).
-                </div>
-                <input type="text" id="ans_p3_q3" class="short-ans-input" placeholder="Nhập số năm...">
-                <div class="explanation" id="exp_p3_q3">
-                    <b>Đáp án:</b> 6 <br>
-                    <b>Giải thích:</b> \(100(1+0.07)^n > 150 \Rightarrow 1.07^n > 1.5 \Rightarrow n > \log_{1.07}(1.5) \approx 5.9\). Chọn 6 năm.
-                </div>
+        <div class="question-block">
+            <p><strong>Câu 4:</strong> Có hai con tàu A, B xuất phát từ hai bến. Trên màn hình ra-đa (mặt phẳng Oxy, đơn vị km), tại thời điểm t (giờ), tàu A đứng yên ở vị trí \( A(-3; 4) \), tàu B chuyển động có tọa độ là \( (4 - 25t; -3 + 35t) \). Khoảng cách ngắn nhất giữa hai tàu bằng bao nhiêu (làm tròn kết quả đến hàng phần trăm)?</p>
+            Nhập đáp án: <input type="text" id="sa4" placeholder="Nhập số...">
+            <div class="explanation" data-sa="4">
+                <strong>Hướng dẫn giải:</strong> Đáp án: <strong>3.81</strong>.<br>
+                \( AB^2 = (4 - 25t - (-3))^2 + (-3 + 35t - 4)^2 = (7 - 25t)^2 + (-7 + 35t)^2 = 1850t^2 - 840t + 98 \).<br>
+                Đoạn AB ngắn nhất khi \( AB^2 \) đạt min tại \( t = \frac{-b}{2a} = \frac{840}{3700} = \frac{42}{185} \).<br>
+                Khi đó \( AB_{min} \approx 3.81 \) km.
             </div>
+        </div>
 
-            <div class="question" id="p3_q4">
-                <div class="question-content">
-                    Câu 4: Để đo chiều cao của một kim tự tháp, người ta cắm một cái cọc cao 2m vuông góc với mặt đất. Vào lúc bóng cọc trên mặt đất dài 3m thì bóng của kim tự tháp dài 210m. Chiều cao của kim tự tháp là bao nhiêu mét?
-                </div>
-                <input type="text" id="ans_p3_q4" class="short-ans-input" placeholder="Nhập kết quả...">
-                <div class="explanation" id="exp_p3_q4">
-                    <b>Đáp án:</b> 140 <br>
-                    <b>Giải thích:</b> Theo định lý Thales (các tia nắng song song): \(\frac{h_{thap}}{bong_{thap}} = \frac{h_{coc}}{bong_{coc}} \Rightarrow \frac{h}{210} = \frac{2}{3} \Rightarrow h = 140\)m.
-                </div>
-            </div>
-
-            <button type="button" class="btn-submit" onclick="submitExam()">NỘP BÀI</button>
-        </form>
-    </div>
+        <button type="button" class="submit-btn" onclick="submitExam()">Nộp bài</button>
+    </form>
 
     <script>
-        // CẤU HÌNH ĐÁP ÁN
-        const answers = {
-            // Phần 1
-            p1_q1: "A", p1_q2: "B", p1_q3: "C", p1_q4: "A", p1_q5: "B",
-            p1_q6: "A", p1_q7: "C", p1_q8: "A", p1_q9: "B", p1_q10: "C",
-            
-            // Phần 2 (True/False)
-            p2_q1: {a: "true", b: "false", c: "true", d: "true"},
-            p2_q2: {a: "true", b: "false", c: "true", d: "true"},
-            p2_q3: {a: "true", b: "true", c: "false", d: "true"},
-
-            // Phần 3 (Short answer - mảng các đáp án chấp nhận được)
-            p3_q1: ["2"],
-            p3_q2: ["70", "70m", "70 mét"],
-            p3_q3: ["6", "6 năm"],
-            p3_q4: ["140", "140m", "140 mét"]
+        // Dữ liệu đáp án[cite: 1, 2]
+        const answersMCQ = { mcq1: "B", mcq2: "B", mcq3: "D", mcq4: "C", mcq5: "A", mcq6: "D", mcq7: "C", mcq8: "D", mcq9: "C", mcq10: "D" };
+        const answersTF = { 
+            tf1: {a: "F", b: "T", c: "F", d: "T"},
+            tf2: {a: "T", b: "F", c: "T", d: "T"},
+            tf3: {a: "T", b: "F", c: "F", d: "T"}
         };
+        const answersSA = { sa1: "72", sa2: "685440", sa3: "10", sa4: "3.81" };
 
-        // ĐỒNG HỒ ĐẾM NGƯỢC
-        let timeRemaining = 60 * 60; // 60 phút
-        const timerElement = document.getElementById('timer');
-        
-        const countdown = setInterval(() => {
-            const minutes = Math.floor(timeRemaining / 60);
-            let seconds = timeRemaining % 60;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-            timerElement.textContent = `${minutes}:${seconds}`;
+        // Hẹn giờ đếm ngược
+        let timeLeft = 3600; // 60 minutes
+        let timerInterval;
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').innerText = `Thời gian: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             
-            if (timeRemaining > 0) {
-                timeRemaining--;
-            } else {
-                clearInterval(countdown);
-                alert("Hết giờ làm bài! Hệ thống sẽ tự động nộp bài.");
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
                 submitExam();
             }
-        }, 1000);
+            timeLeft--;
+        }
 
-        // HÀM CHẤM ĐIỂM
+        timerInterval = setInterval(updateTimer, 1000);
+
         function submitExam() {
-            clearInterval(countdown);
-            let totalScore = 0;
+            clearInterval(timerInterval);
+            document.getElementById('timer').innerText = "Đã nộp bài!";
             
-            // --- XỬ LÝ PHẦN 1 (0.4đ/câu) ---
+            let scoreP1 = 0;
+            let scoreP2 = 0;
+            let scoreP3 = 0;
+
+            // Chấm Phần 1 (0.4 điểm/câu)
             for (let i = 1; i <= 10; i++) {
-                const qKey = `p1_q${i}`;
-                const userAns = document.querySelector(`input[name="${qKey}"]:checked`)?.value;
-                const div = document.getElementById(`q${i}`);
-                const exp = document.getElementById(`exp_${qKey}`);
-                
-                if (userAns === answers[qKey]) {
-                    totalScore += 0.4;
-                    div.classList.add('correct-border');
-                } else {
-                    div.classList.add('wrong-border');
+                const selected = document.querySelector(`input[name="mcq${i}"]:checked`);
+                if (selected && selected.value === answersMCQ[`mcq${i}`]) {
+                    scoreP1 += 0.4;
+                    selected.parentElement.style.color = "#27ae60";
+                    selected.parentElement.style.fontWeight = "bold";
+                } else if (selected) {
+                    selected.parentElement.style.color = "#e74c3c";
+                    selected.parentElement.style.fontWeight = "bold";
                 }
-                exp.style.display = 'block';
             }
 
-            // --- XỬ LÝ PHẦN 2 (1.0đ/câu - thang điểm bậc thang) ---
+            // Chấm Phần 2
+            const tfScores = [0, 0.1, 0.25, 0.5, 1.0]; // Barem điểm theo số ý đúng
             for (let i = 1; i <= 3; i++) {
-                const qKey = `p2_q${i}`;
                 let correctCount = 0;
-                ['a', 'b', 'c', 'd'].forEach(sub => {
-                    const subKey = `${qKey}_${sub}`;
-                    const userVal = document.querySelector(`input[name="${subKey}"]:checked`)?.value;
-                    if (userVal === answers[qKey][sub]) correctCount++;
+                ['a', 'b', 'c', 'd'].forEach(letter => {
+                    const selected = document.querySelector(`input[name="tf${i}${letter}"]:checked`);
+                    if (selected && selected.value === answersTF[`tf${i}`][letter]) {
+                        correctCount++;
+                    }
                 });
-
-                // Quy đổi điểm
-                let points = 0;
-                if (correctCount === 1) points = 0.1;
-                else if (correctCount === 2) points = 0.2;
-                else if (correctCount === 3) points = 0.5;
-                else if (correctCount === 4) points = 1.0;
-                
-                totalScore += points;
-
-                // UI Feedback
-                const div = document.getElementById(qKey);
-                const exp = document.getElementById(`exp_${qKey}`);
-                if (correctCount === 4) div.classList.add('correct-border');
-                else if (correctCount > 0) div.classList.add('partial-border'); // Đúng 1 phần
-                else div.classList.add('wrong-border');
-                
-                exp.style.display = 'block';
+                scoreP2 += tfScores[correctCount];
             }
 
-            // --- XỬ LÝ PHẦN 3 (0.75đ/câu) ---
+            // Chấm Phần 3 (0.75 điểm/câu)
             for (let i = 1; i <= 4; i++) {
-                const qKey = `p3_q${i}`;
-                const userAns = document.getElementById(`ans_${qKey}`).value.trim().toLowerCase();
-                const correctArr = answers[qKey].map(a => a.toLowerCase());
-                
-                const div = document.getElementById(qKey);
-                const exp = document.getElementById(`exp_${qKey}`);
-
-                if (correctArr.includes(userAns)) {
-                    totalScore += 0.75;
-                    div.classList.add('correct-border');
+                const inputVal = document.getElementById(`sa${i}`).value.trim().replace(',', '.');
+                if (inputVal === answersSA[`sa${i}`]) {
+                    scoreP3 += 0.75;
+                    document.getElementById(`sa${i}`).style.borderColor = "#27ae60";
+                    document.getElementById(`sa${i}`).style.backgroundColor = "#d5f5e3";
                 } else {
-                    div.classList.add('wrong-border');
+                    document.getElementById(`sa${i}`).style.borderColor = "#e74c3c";
+                    document.getElementById(`sa${i}`).style.backgroundColor = "#fadbd8";
                 }
-                exp.style.display = 'block';
             }
 
-            // HIỂN THỊ KẾT QUẢ
-            const resultBox = document.getElementById('result-display');
-            resultBox.textContent = `Tổng điểm: ${totalScore.toFixed(2)} / 10.0`;
-            resultBox.style.display = 'block';
+            // Hiển thị kết quả
+            const totalScore = scoreP1 + scoreP2 + scoreP3;
+            document.getElementById('scoreP1').innerText = scoreP1.toFixed(1);
+            document.getElementById('scoreP2').innerText = scoreP2.toFixed(2);
+            document.getElementById('scoreP3').innerText = scoreP3.toFixed(2);
+            document.getElementById('scoreDisplay').innerText = `${totalScore.toFixed(2)} / 10 Điểm`;
             
-            // Disable inputs
-            const inputs = document.querySelectorAll('input');
-            inputs.forEach(i => i.disabled = true);
-            document.querySelector('.btn-submit').disabled = true;
+            document.getElementById('resultPanel').style.display = 'block';
+            
+            // Hiển thị hướng dẫn giải
+            const explanations = document.querySelectorAll('.explanation');
+            explanations.forEach(el => el.style.display = 'block');
 
-            // Scroll lên đầu
+            // Ẩn nút nộp bài
+            document.querySelector('.submit-btn').style.display = 'none';
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
